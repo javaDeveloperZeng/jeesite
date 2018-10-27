@@ -1,0 +1,26 @@
+.pagination {
+    margin: 10px 0 !important;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 7px !important;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+.table {
+    margin-bottom: 0px !important;
+}
+.viewTable tr td{
+    width:100px;
+}
+#list2{
+	word-break:break-all;
+	word-wrap:break-all;
+	width:100%;
+}
+fieldset{
+	padding:.35em .625em .75em;
+	margin:0 2px;
+	border:1px solid silver;
+	border-radius:8px
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<mc localip="192.168.2.185" localport="10004" version="5.3.8">
+  <!--所有的监控主机组-->
+  <monitorhostgroups>
+    <hostgroup id="ba9a246c-683a-435d-9c4e-3fc0462009c6" tag="0" name="监控主机组一" roleUserID="system" ostype="Win32">
+      <host id="1aef0f12-b0d0-437c-9381-58a9ef1ad7ba" tag="0" hosttype="ma" name="监控主机1" roleUserID="system" roleID="" ip="127.0.0.1" port="10002" disable="0" ostype="Win32" mcToMaIP="" mcToMaPort="" maToMcIp="" maToMcPort=""/>
+    </hostgroup>
+    <hostgroup id="eeb40270-f371-475d-989a-918e4f325aa9" tag="0" name="监控主机组二" roleUserID="system" ostype="Win32">
+      <host id="b1cdd2f6-4ab4-4dec-afe1-526dac859562" tag="0" hosttype="ma" name="监控主机2" roleUserID="system" roleID="" ip="192.168.2.185" port="10002" disable="0" ostype="Win32" mcToMaIP="" mcToMaPort="" maToMcIp="" maToMcPort=""/>
+    </hostgroup>
+  </monitorhostgroups>
+  <!--所有的同步主机组-->
+  <backuphostgroups>
+    <hostgroup id="0bfe59cf-3f23-47d9-a53c-6f5cab7899e7" tag="0" name="同步主机组一" roleUserID="system" ostype="Win32">
+      <host id="79513450-5198-4310-8361-f9fca37b3037" tag="0" hosttype="sa" name="同步主机1" roleUserID="system" roleID="" ip="127.0.0.1" port="10003" disable="0" ostype="Win32" mcToSaIP="" mcToSaPort="" saToMcIP="" saToMcPort=""/>
+    </hostgroup>
+    <hostgroup id="5f3d9501-388a-4333-b12f-7f54ab8d592c" tag="0" name="同步主机组二" roleUserID="system" ostype="Win32">
+      <host id="38ad290c-e77d-4eb5-850e-e27d20397a0c" tag="0" hosttype="sa" name="同步主机2" roleUserID="system" roleID="" ip="192.168.2.185" port="10003" disable="0" ostype="Win32" mcToSaIP="" mcToSaPort="" saToMcIP="" saToMcPort=""/>
+    </hostgroup>
+  </backuphostgroups>
+  <!--所有网站-->
+  <websites>
+    <website id="4251e873-5e91-431d-872e-d16007e29c8e" tag="2" name="网站2" roleUserID="system" roleID="" disable="0" monitorstate="1" synchrostate="1" auditstate="0" filedriver="0" backuphostgroupid="5f3d9501-388a-4333-b12f-7f54ab8d592c" monitorhostgroupid="eeb40270-f371-475d-989a-918e4f325aa9" initialized="0" defaulthomepage="" domain="192.168.2.185" websiteip="" websiteport="80">
+      <policy>
+        <!--监控策略-->
+        <monitorpolicy id="a3f7157c-c200-4670-b27a-b9f98c73cd88" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" excludecreateevent="0" excludechangeevent="0" excluderenameevent="0" excludedeleteevent="0" filewatcher="1" filewatcherparams="" filescanner="0" filescannerparams="" filefilter="0" filefilterparams="" filedriver="0" filedriverparams="" filelinuxdriver="0" filelinuxdriverparams="" filechecker="0" filecheckerparams=""/>
+        <!--备份策略-->
+        <filepolicy id="a00c8ca4-8740-4eb1-b67f-7905352808a6" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" maxfilesizeavailable="0" maxfilesize="0" minfilesizeavailable="0" minfilesize="0" startdateavailable="0" startdate="" enddateavailable="0" enddate=""/>
+        <!--自动同步策略-->
+        <autoupdatepolicy id="597c64ac-9288-4319-8863-2fb4e387acd4" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" excludecreateevent="0" excludechangeevent="0" excluderenameevent="0" excludedeleteevent="0" filewatcher="1" filewatcherparams="" filescanner="0" filescannerparams="" filefilter="0" filefilterparams="" filedriver="0" filedriverparams="" filechecker="0" filecheckerparams=""/>
+        <!--手动同步策略-->
+        <manualupdatepolicy id="bfe4eed4-970e-4454-a8dd-ff1e8f88143c" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" maxfilesizeavailable="0" maxfilesize="0" minfilesizeavailable="0" minfilesize="0" startdateavailable="0" startdate="" enddateavailable="0" enddate=""/>
+        <!--MC报警策略-->
+        <alertpolicy id="43d7beaa-c6fc-4a24-aba7-71d6fcab7367" tag="0" mailavailable="0" email="" telephonenumber="" teleavalable="0"/>
+      </policy>
+      <!--网站下的目录-->
+      <directorys>
+        <directory id="eb507355-d654-4843-8895-537e1b24cc20" tag="0" name="web2">
+          <backuppaths>
+            <remotepath id="b86dbd89-3073-4558-a452-7f47e3662869" tag="0" hostid="38ad290c-e77d-4eb5-850e-e27d20397a0c" path="C:\CVICSE\web2_bak"/>
+          </backuppaths>
+          <monitorpaths>
+            <remotepath id="56fce32d-6f5c-4995-aa15-8b1e1f61772e" tag="0" hostid="b1cdd2f6-4ab4-4dec-afe1-526dac859562" path="C:\CVICSE\web2"/>
+          </monitorpaths>
+        </directory>
+      </directorys>
+    </website>
+    <website id="31c6a0ef-83b0-418c-818b-383dbc8d9d62" tag="3" name="默认网站" roleUserID="system" roleID="" disable="0" monitorstate="1" synchrostate="1" auditstate="0" filedriver="0" backuphostgroupid="0bfe59cf-3f23-47d9-a53c-6f5cab7899e7" monitorhostgroupid="ba9a246c-683a-435d-9c4e-3fc0462009c6" initialized="0" defaulthomepage="" domain="127.0.0.1" websiteip="" websiteport="80">
+      <policy>
+        <!--监控策略-->
+        <monitorpolicy id="9fdbd84f-1028-4b6b-8134-c2a0440df389" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" excludecreateevent="0" excludechangeevent="0" excluderenameevent="0" excludedeleteevent="0" filewatcher="1" filewatcherparams="" filescanner="0" filescannerparams="" filefilter="0" filefilterparams="" filedriver="0" filedriverparams="" filelinuxdriver="0" filelinuxdriverparams="" filechecker="0" filecheckerparams=""/>
+        <!--备份策略-->
+        <filepolicy id="de081c64-71ed-4ff6-90db-716a6c19d84f" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" maxfilesizeavailable="0" maxfilesize="0" minfilesizeavailable="0" minfilesize="0" startdateavailable="0" startdate="" enddateavailable="0" enddate=""/>
+        <!--自动同步策略-->
+        <autoupdatepolicy id="482e91ae-7eda-47cb-b135-c265c3b02ecb" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" excludecreateevent="0" excludechangeevent="0" excluderenameevent="0" excludedeleteevent="0" filewatcher="1" filewatcherparams="" filescanner="0" filescannerparams="" filefilter="0" filefilterparams="" filedriver="0" filedriverparams="" filechecker="0" filecheckerparams=""/>
+        <!--手动同步策略-->
+        <manualupdatepolicy id="6a7924ef-47c7-46c1-b802-a602be5cbdfe" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" maxfilesizeavailable="0" maxfilesize="0" minfilesizeavailable="0" minfilesize="0" startdateavailable="0" startdate="" enddateavailable="0" enddate=""/>
+        <!--MC报警策略-->
+        <alertpolicy id="6e97db3c-251a-4835-9c03-e0446dd38275" tag="0" mailavailable="0" email="" telephonenumber="" teleavalable="0"/>
+      </policy>
+      <!--网站下的目录-->
+      <directorys>
+        <directory id="dab4b981-ad2c-4335-bd77-f183f70ea6b5" tag="0" name="主目录">
+          <backuppaths>
+            <remotepath id="9c4ac2d7-b048-44e2-920b-f4c7fc1a22d7" tag="0" hostid="79513450-5198-4310-8361-f9fca37b3037" path="C:\CVICSE\web_bak"/>
+          </backuppaths>
+          <monitorpaths>
+            <remotepath id="1e1e0598-6178-4c36-84fd-b3de32d7961c" tag="0" hostid="1aef0f12-b0d0-437c-9381-58a9ef1ad7ba" path="C:\CVICSE\web"/>
+          </monitorpaths>
+        </directory>
+      </directorys>
+    </website>
+  </websites>
+</mc>

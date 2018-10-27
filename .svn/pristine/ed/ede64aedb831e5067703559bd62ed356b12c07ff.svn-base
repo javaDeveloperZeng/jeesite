@@ -1,0 +1,135 @@
+/**  
+* @Title: TestTelnet.java  
+* @Package com.inspur.service  
+* @Description: TODO(用一句话描述该文件做什么)  
+* @author zenglingsheng 
+* @date 2018年10月22日 下午4:31:00
+* @version V1.0  
+*/
+package com.thinkgem.jeesite.modules.query.web;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.net.telnet.TelnetClient;
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.dom4j.io.SAXReader;
+import org.springframework.stereotype.Component;
+
+/**  
+* @ClassName: TestTelnet  
+* @Description: TODO(这里用一句话描述这个类的作用)  
+* @author zenglingsheng  
+* @date 2018年10月22日 下午4:31:00  
+*    
+*/
+@Component
+public class ReadXmlAndTelnetUtils {
+
+	
+	public static void main(String[] args) {
+		try {
+			//readXmlMethod();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+	public static void readXmlMethod(List<Map<String,Object>> monitorList,
+			 Map<String,Object> websiteList	) throws DocumentException{
+		 SAXReader reader = new SAXReader();
+	      Document document = reader.read(new File("C:/CVICSE/InforGuard/InforGuardMC/var/inforguard/managerConsole.xml"));
+	      //获取文档根节点
+	      Element root = document.getRootElement();
+	      putValueFromXml(root,"monitorhostgroups",monitorList);
+	      putValueFromXml(root,"backuphostgroups",monitorList);
+	      getWebSiteValue(root,"websites",websiteList);
+	  }
+	/**
+	 * 获取weisite节点
+	 */
+	public static void getWebSiteValue(Element root,String nodeId,Map websiteList){
+		 Element contactElem =root.element(nodeId);
+	     List<Element> contactList = contactElem.elements();
+	     for (Element e:contactList){
+	   	  websiteList.put("name", e.attributeValue("name")); 
+	     }
+	}
+	/**
+	 * 获取值放入到Map
+	* @Title: putValueFromXml  
+	* @author zenglingsheng  
+	* @date 2018年10月22日 下午5:53:26 
+	* @Description: TODO(这里用一句话描述这个方法的作用)  
+	* @throws
+	 */
+	public static void putValueFromXml(Element root,String nodeId,List<Map<String,Object>> monitorList){
+		 //获得指定节点下面的子节点
+	      Element contactElem = root.element(nodeId);//首先要知道自己要操作的节点。 
+	      List<Element> contactList = contactElem.elements();
+	      for (Element e:contactList){
+	    	  Map monitorMap=new HashMap();
+	    	  monitorMap.put("hostgroupName", e.attributeValue("name"));
+	          List<Element> monitorhostgroupList=e.elements();
+	          for(Element monitorhostgroup : monitorhostgroupList){
+	        	  Map<String,Object> map=new HashMap<String,Object>();
+	        	  String  name=monitorhostgroup.attributeValue("name");
+	        	  String  ip=monitorhostgroup.attributeValue("ip");
+	        	  String  port=monitorhostgroup.attributeValue("port");
+	        	  monitorMap.put("name", name);
+	        	  monitorMap.put("port", port);
+	        	  monitorMap.put("ip", ip);
+	          }
+	          monitorList.add(monitorMap);
+	      }
+	} 
+	//显示图片信息
+	public void setTelnetInfo(List<Map<String, Object>>  monitorList){
+		for(Map<String, Object> item:monitorList){
+			String ip=(String) item.get("ip");
+			int port=Integer.valueOf((String) item.get("port"));
+			boolean flag=telnetMethod(ip,port);
+			item.put("flag", flag);
+		}
+	}
+	/**
+	 * telnet ip 和端口
+	* @Title: telnetMethod
+	* @Description: TODO
+	* @param @param ip
+	* @throws
+	 */
+	public boolean telnetMethod(String ip,int port){
+		boolean flag=true;
+		TelnetClient telnet;  
+		telnet = new TelnetClient();  
+		try  
+		{  
+		    telnet.connect(ip, port);
+		    System.out.println(ip+":"+port+"端口已开通");
+		}  
+		catch (IOException e)  
+		{   flag=false;
+			System.out.println(ip+":"+port+"端口未开通");
+		}  
+		  
+		try  
+		{  
+		    telnet.disconnect();  
+		}  
+		catch (IOException e)  
+		{  
+			System.out.println(ip+":"+port+"关闭失败");
+		}
+		return flag;
+	}
+}

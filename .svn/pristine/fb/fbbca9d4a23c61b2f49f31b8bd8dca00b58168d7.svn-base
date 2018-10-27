@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.query.dao.QueryDao">
+    <!-- STARTTIME 发现时间
+    `PUBLISHTIME`,  '发布时间'
+			`CHILDTYPE`,  '事件类型'
+			`HOSTIP`,  '主机地址'
+			`WEBSITENAME`, '网站名称'
+			`ENDTIME`, '处理时间'
+			`NUMBER`,   '处理次数'
+			`STATE`,   '处理结果'
+			`CONTENT`   '内容'   -->
+    <select id="qeryList" resultType="java.util.LinkedHashMap">
+			select
+				IFNULL(`STARTTIME`,'') STARTTIME,  
+				IFNULL(`PUBLISHTIME`,'') PUBLISHTIME, 
+				IFNULL(`CHILDTYPE`,'')  CHILDTYPE, 
+				IFNULL(`HOSTIP`, '') HOSTIP,
+				IFNULL(`WEBSITENAME`,'') WEBSITENAME,
+				IFNULL(`ENDTIME`,'') ENDTIME, 
+				CONCAT(IFNULL(`NUMBER`,''),'(次)')   NUMBER,
+				case WHEN IFNULL(`STATE`, '')='1' THEN '未处理' ELSE CASE WHEN IFNULL(`STATE`, '')='2' THEN '已处理' ELSE '' END END  STATE,
+				IFNULL(`CONTENT`,'')  CONTENT 
+			from synchronizationlog
+			order by STARTTIME desc
+	</select>
+			<!-- 
+			 STARTTIME  发现时间
+			`TAMPTIME`,  '篡改时间'
+			`CHILDTYPE`,  '事件类型'
+			`HOSTIP`,  '主机地址'
+			`WEBSITENAME`, '网站名称'
+			`ENDTIME`, '处理时间'
+			`NUMBER`,   '处理次数'
+			`STATE`,   '处理结果'
+			`CONTENT`   '内容'   -->
+    <select id="qeryList2" resultType="java.util.LinkedHashMap">
+		select
+			IFNULL(`STARTTIME`,'') STARTTIME,  
+			IFNULL(`TAMPTIME`,'') TAMPTIME, 
+			IFNULL(`CHILDTYPE`,'')  CHILDTYPE, 
+			IFNULL(`HOSTIP`, '') HOSTIP,
+			IFNULL(`WEBSITENAME`,'') WEBSITENAME,
+			IFNULL(`ENDTIME`,'') ENDTIME, 
+			CONCAT(IFNULL(`NUMBER`,''),'(次)')   NUMBER,
+			case WHEN IFNULL(`STATE`, '')='1' THEN '未处理' ELSE CASE WHEN IFNULL(`STATE`, '')='2' THEN '已处理' ELSE '' END END  STATE,
+			IFNULL(`CONTENT`,'')  CONTENT 
+		from tamperlog
+		order by STARTTIME desc
+	</select>
+    <select id="qeryConfiguration" resultType="java.util.LinkedHashMap">
+		select  
+		        reflash_date,
+		        page_size
+		from table_configuration
+		limit 1
+	</select>
+	
+	
+</mapper>

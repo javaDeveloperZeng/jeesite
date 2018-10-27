@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<mc localip="127.0.0.1" localport="10004" version="5.3.8">
+  <!--所有的监控主机组-->
+  <monitorhostgroups>
+    <hostgroup id="42d03866-9595-445e-9648-46e2fb7c9744" tag="0" name="监控主机组一" roleUserID="system" ostype="Win32">
+      <host id="4e6b2f45-5b5e-4703-a732-83da0d249e17" tag="0" hosttype="ma" name="监控主机1" roleUserID="system" roleID="" ip="127.0.0.1" port="10002" disable="0" ostype="Win32" mcToMaIP="" mcToMaPort="" maToMcIp="" maToMcPort=""/>
+    </hostgroup>
+  </monitorhostgroups>
+  <!--所有的同步主机组-->
+  <backuphostgroups>
+    <hostgroup id="47a1daa7-e083-4edc-83c7-2f40f4bdbb8c" tag="0" name="同步主机组一" roleUserID="system" ostype="Win32">
+      <host id="33801c65-3143-489a-aaf3-f5e5a6d6299e" tag="0" hosttype="sa" name="同步主机1" roleUserID="system" roleID="" ip="127.0.0.1" port="10003" disable="0" ostype="Win32" mcToSaIP="" mcToSaPort="" saToMcIP="" saToMcPort=""/>
+    </hostgroup>
+  </backuphostgroups>
+  <!--所有网站-->
+  <websites>
+    <website id="4d0ef1af-3b10-4132-9a89-bf2822d73832" tag="9" name="默认网站" roleUserID="system" roleID="" disable="0" monitorstate="1" synchrostate="1" auditstate="0" filedriver="0" backuphostgroupid="47a1daa7-e083-4edc-83c7-2f40f4bdbb8c" monitorhostgroupid="42d03866-9595-445e-9648-46e2fb7c9744" initialized="0" defaulthomepage="" domain="127.0.0.1" websiteip="" websiteport="80">
+      <policy>
+        <!--监控策略-->
+        <monitorpolicy id="7837eaf4-63ad-4478-a192-4bebf5f140a8" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" excludecreateevent="0" excludechangeevent="0" excluderenameevent="0" excludedeleteevent="0" filewatcher="1" filewatcherparams="" filescanner="0" filescannerparams="" filefilter="0" filefilterparams="" filedriver="0" filedriverparams="" filelinuxdriver="0" filelinuxdriverparams="" filechecker="0" filecheckerparams=""/>
+        <!--备份策略-->
+        <filepolicy id="ede1dc04-9c3b-46d9-b090-415a56c3d734" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" maxfilesizeavailable="0" maxfilesize="0" minfilesizeavailable="0" minfilesize="0" startdateavailable="0" startdate="" enddateavailable="0" enddate=""/>
+        <!--自动同步策略-->
+        <autoupdatepolicy id="44e5fcb8-f18a-446e-ba93-7768720e9d97" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" excludecreateevent="0" excludechangeevent="0" excluderenameevent="0" excludedeleteevent="0" filewatcher="1" filewatcherparams="" filescanner="0" filescannerparams="" filefilter="0" filefilterparams="" filedriver="0" filedriverparams="" filechecker="0" filecheckerparams=""/>
+        <!--手动同步策略-->
+        <manualupdatepolicy id="ea6d66f8-2989-4110-8324-4d08ab6a8d2e" tag="0" available="0" excludepathavailable="0" excludepath="" excludefileavailable="0" excludefile="" excludetypeavailable="0" excludetype="" excludebluravailable="0" excludeblur="" maxfilesizeavailable="0" maxfilesize="0" minfilesizeavailable="0" minfilesize="0" startdateavailable="0" startdate="" enddateavailable="0" enddate=""/>
+        <!--MC报警策略-->
+        <alertpolicy id="a83a134e-0151-420d-b57c-18d9c36f3c07" tag="0" mailavailable="0" email="" telephonenumber="" teleavalable="0"/>
+      </policy>
+      <!--网站下的目录-->
+      <directorys>
+        <directory id="e2a827ce-2ab5-4a91-ba13-e39ac0ad32a1" tag="1" name="主目录">
+          <backuppaths>
+            <remotepath id="662d48a1-3403-4af6-84b7-f496b954b40d" tag="1" hostid="33801c65-3143-489a-aaf3-f5e5a6d6299e" path="E:\web_bak"/>
+          </backuppaths>
+          <monitorpaths>
+            <remotepath id="3b2daf0a-84ae-4c07-926f-4f66ca167cfb" tag="1" hostid="4e6b2f45-5b5e-4703-a732-83da0d249e17" path="E:\web"/>
+          </monitorpaths>
+        </directory>
+      </directorys>
+    </website>
+  </websites>
+</mc>
